@@ -1,7 +1,7 @@
 #ifndef SCHEDULE_H_
 #define SCHEDULE_H_
 
-//#include <ucontext.h>
+#include <ucontext.h>
 #include <stdint.h>
 #include "objpool.h"
 
@@ -32,12 +32,13 @@ public:
 	void coroutine_yield();
 
 protected:
-	static void mainfunc(schedule_t *schedule);
+	static void mainfunc(schedule_t *ptr);
 	void save_stack(coroutine_t *co,char *top);
 	
 private:
-	//ucontext_t main_;
-	char *stack_;
+	ucontext_t main_;
+	
+	void *stack_;
 
 	int running_;
 
