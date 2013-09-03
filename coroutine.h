@@ -14,9 +14,12 @@ enum COROUTINE_STATE
 struct coroutine_t
 {
 	schedule_t *schedule_;
+	ucontext_t ctx_;
 	schedule_t::coroutine_func_t mainfunc_;
 	void *ud_;
 	char *stack_;
+	int cap_;
+	int size_;
 	COROUTINE_STATE state_;
 };
 
